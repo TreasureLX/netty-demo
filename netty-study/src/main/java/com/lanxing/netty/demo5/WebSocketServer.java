@@ -1,4 +1,4 @@
-package com.lanxing.netty.demo5.server;
+package com.lanxing.netty.demo5;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
