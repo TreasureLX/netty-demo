@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package com.lanxing.netty.demo6;
+
+option optimize_for = SPEED;
+option java_package = "com.lanxing.netty.demo6";
+option java_outer_classname = "DataInfo";
+
+message MessageType {
+    enum DataType {
+        student_type = 1;
+        course_type = 2;
+    }
+    required DataType data_type = 1;
+    oneof data_body {
+        Student student = 2;
+        Course course = 3;
+    }
+}
+
+message Student {
+    optional string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Course {
+    optional string course_name = 1;
+}
