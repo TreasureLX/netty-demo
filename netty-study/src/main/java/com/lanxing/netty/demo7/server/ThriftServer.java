@@ -17,7 +17,9 @@ public class ThriftServer {
         PersonService.Processor<PersonServiceImpl> processor=new PersonService.Processor<>(new PersonServiceImpl());
         //设置arg
         arg.protocolFactory(new TCompactProtocol.Factory());
+        //以Frame为单位，非阻塞服务中使用
         arg.transportFactory(new TFramedTransport.Factory());
+        //
         arg.processorFactory(new TProcessorFactory(processor));
         //声明服务
         TServer server=new THsHaServer(arg);
