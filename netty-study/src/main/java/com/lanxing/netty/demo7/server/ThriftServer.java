@@ -11,16 +11,17 @@ import org.apache.thrift.transport.TNonblockingServerSocket;
 
 public class ThriftServer {
     public static void main(String[] args) throws Exception {
-
+        //声明socket、arg、processor
         TNonblockingServerSocket socket=new TNonblockingServerSocket(8899);
         THsHaServer.Args arg=new THsHaServer.Args(socket).minWorkerThreads(2).maxWorkerThreads(4);
         PersonService.Processor<PersonServiceImpl> processor=new PersonService.Processor<>(new PersonServiceImpl());
-
+        //设置arg
         arg.protocolFactory(new TCompactProtocol.Factory());
         arg.transportFactory(new TFramedTransport.Factory());
         arg.processorFactory(new TProcessorFactory(processor));
+        //声明服务
         TServer server=new THsHaServer(arg);
-
+        //启动服务
         System.out.println("server start");
         server.serve();
     }
