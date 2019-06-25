@@ -1,4 +1,5 @@
 namespace java com.lanxing.netty.demo7
+namespace py py.thrift
 
 typedef i16 short
 typedef i32 int
