@@ -8,6 +8,7 @@ import org.apache.thrift.TException;
 public class PersonServiceImpl implements PersonService.Iface {
     @Override
     public Person getPersonByUsername(String username) throws DataException, TException {
+        System.out.println(username);
         return new Person().setAge(20).setMarried(false).setName(username);
     }
 

@@ -15,13 +15,13 @@ public class ThriftServer {
         TNonblockingServerSocket socket=new TNonblockingServerSocket(8899);
         THsHaServer.Args arg=new THsHaServer.Args(socket).minWorkerThreads(2).maxWorkerThreads(4);
         PersonService.Processor<PersonServiceImpl> processor=new PersonService.Processor<>(new PersonServiceImpl());
-        //设置arg
+        //设置协议工厂
         arg.protocolFactory(new TCompactProtocol.Factory());
-        //以Frame为单位，非阻塞服务中使用
+        //设置传输方式
         arg.transportFactory(new TFramedTransport.Factory());
-        //
+        //设置处理器
         arg.processorFactory(new TProcessorFactory(processor));
-        //声明服务
+        //声明服务的模式
         TServer server=new THsHaServer(arg);
         //启动服务
         System.out.println("server start");
